@@ -32,8 +32,8 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t seu-usuario/seu-repositorio:v1.0 .
-        # Substitua 'seu-usuario/seu-repositorio' pelo seu nome de usuário/repositório Docker e 'v1.0' pela versão desejada
+        docker build -t sonats/imagempipe:v1.0 .
+    
 
     - name: Push Docker Image
       run: |
