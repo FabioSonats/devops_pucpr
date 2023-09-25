@@ -57,6 +57,7 @@ jobs:
         target: "http://localhost:3000/login" 
       env:
         ZAP_API_KEY: ${{ secrets.OWASP_ZAP_API_KEY }}
+        DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}  # Passa o token do Docker Hub como variável de ambiente
       if: success()  # O fluxo de trabalho continuará apenas se todas as etapas anteriores forem bem-sucedidas
 
     - name: Limpar contêineres Docker antigos
