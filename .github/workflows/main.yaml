@@ -39,10 +39,13 @@ jobs:
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username sonats --password-stdin
         docker push sonats/segundotelegramimage:v1.0
 
-    - name: Send Telegram Message
-      env:
-        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-      run: |
-        message="A imagem Docker foi construída e enviada com sucesso!"
-        curl -s -X POST "https://api.telegram.org/b
+        - name: Send Telegram Message
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          message="A imagem Docker foi construída e enviada com sucesso!"
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+            -d "chat_id=${TELEGRAM_CHAT_ID}" \
+            -d "text=${message}"
+      
