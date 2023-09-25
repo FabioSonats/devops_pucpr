@@ -32,12 +32,12 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build -t sonats/segundaimagempipe:v1.0 .
+        docker build -t sonats/segundotelegramimage:v1.0 .
 
     - name: Push Docker Image
       run: |
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username sonats --password-stdin
-        docker push sonats/telegramimage:v1.0
+        docker push sonats/segundotelegramimage:v1.0
 
     - name: Send Telegram Message
       env:
