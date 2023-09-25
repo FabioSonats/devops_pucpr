@@ -37,8 +37,12 @@ jobs:
     - name: Push Docker Image
       run: |
         echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username sonats --password-stdin
-        docker push sonats/segundaimagempipe:v1.0
+        docker push sonats/telegramImage:v1.0
 
-    - name: Deploy Application
+    - name: Send Telegram Message
+      env:
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: |
-        # Comandos para implantar a aplicação usando a imagem Docker
+        message="A imagem Docker foi construída e enviada com sucesso!"
+        curl -s -X POST "https://api.telegram.org/b
